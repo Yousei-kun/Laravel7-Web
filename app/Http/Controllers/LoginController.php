@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\User2;
 
@@ -15,22 +17,65 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function auth()
-    {
-        $username = request()->post()['username'];
-        $password_input = request()->post()['password'];
-        $password_check = User2::where('username', $username)->first()['password'];
+//    public function auth()
+//    {
+//        $username = request()->post()['username'];
+//        $password_input = request()->post()['password'];
+//        $password_check = User2::where('username', $username)->first()['password'];
+//
+//        if (Hash::check($password_input, $password_check)) {
+////            return redirect()->route('dashboard', [$username]);
+//            return redirect()->action(
+//                [DashboardController::class, 'index'], ['username' => $username]
+//            );
+//
+////            return route('dashboard')->with('username', $username);
+//        }
+//        else {
+//            return view('login')->with('auth', 'Incorrect Password');
+//        }
+//    }
 
-        if (Hash::check($password_input, $password_check)) {
-//            return redirect()->route('dashboard', [$username]);
-            return redirect()->action(
-                [DashboardController::class, 'index'], ['username' => $username]
-            );
+    //Pilot Jinix
 
-//            return route('dashboard')->with('username', $username);
+    public function welcome(Request $request){
+        $session = $request->session()->get('username');
+
+        if ($session != null){
+            return redirect(route('dashboard'));
         }
-        else {
-            return view('login')->with('auth', 'Incorrect Password');
+
+        return view("welcome");
+    }
+
+    public function authenticate(Request $request){
+//      ini gunanya untuk validasi apakah ada variable yang kosong
+        $request->validate([
+            "username"=>"required",
+            "password"=>"required|min:8"
+        ]);
+
+        $credentials = $request -> only('username', 'password');
+
+//      disini bagian cek auth nya gan
+        if (Auth::attempt($credentials)){
+            $request->session()->put("username", $request->username);
+            return redirect(route("dashboard"));
         }
+        return redirect(route("login"));
+    }
+
+    public function register(Request $request){
+        $request->validate([
+            "username"=>"required",
+            "password"=>"required|min:8"
+        ]);
+
+        DB::table("users")->insert([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect(route("login"));
     }
 }

@@ -13,16 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
+//Route::get('/', function () {
+//    return view('welcome');
+//})->name('welcome');
+//PilotJinix
+Route::get('/', 'LoginController@welcome')->name('welcome');
 
 Route::get('register', 'RegisterController@index' )->name('register');
-Route::post('register/check', 'RegisterController@check')->name('register-check');
+//Route::post('register/check', 'RegisterController@check')->name('register-check');
+//Pilot Jinix
+Route::post('register/check', 'LoginController@register')->name('register-check');
 
 Route::get('login', 'LoginController@index' )->name('login');
-Route::post('login', 'LoginController@auth')->name('login-auth');
+//Route::post('login', 'LoginController@auth')->name('login-auth');
+//Pilot Jinix
+Route::post('login', 'LoginController@authenticate')->name('login-auth');
 
 Route::get('dashboard', 'DashboardController@index' )->name('dashboard');
 
