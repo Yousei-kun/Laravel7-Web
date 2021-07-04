@@ -18,7 +18,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register');
+        return view('admin.auth.register');
     }
 
 //    commit 3rd July 2021

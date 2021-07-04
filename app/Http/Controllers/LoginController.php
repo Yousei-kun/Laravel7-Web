@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('login');
+        return view('admin.auth.login');
     }
 
 //    commit 3rd July 2021
