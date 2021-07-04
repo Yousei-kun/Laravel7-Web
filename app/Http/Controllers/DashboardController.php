@@ -26,4 +26,11 @@ class DashboardController extends Controller
 
         return view("dashboard", compact("data"));
     }
+
+    public function logout(Request $request){
+        $request->session()->forget('name');
+        $request->session()->flush();
+
+        return redirect(route('login'));
+    }
 }

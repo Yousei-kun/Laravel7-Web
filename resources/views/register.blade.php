@@ -10,7 +10,7 @@
             <h2 style="margin: 10px auto">
                 Register Page
             </h2>
-            <form method="post" action="{{ route('register-check') }}" style="margin: 0 3em 2em 3em">
+            <form method="post" action="{{ route('register-input') }}" style="margin: 0 3em 2em 3em">
                 @csrf
                 <div class="form-group">
                     <label for="inputUsername">Username</label>
