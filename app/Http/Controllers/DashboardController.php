@@ -17,13 +17,14 @@ class DashboardController extends Controller
 
 //  get Session dari login
     public function index(Request $request){
+
         $session = $request->session()->get("username");
 
         if ($session == null){
             return redirect(route('login'));
         }
 
-        $data = DB::table('users')->where('username', $session)->first();
+        $data['username'] = DB::table('users')->where('username', $session)->first()->username;
         return view("admin.master.dashboard", compact("data"));
     }
 
@@ -33,5 +34,9 @@ class DashboardController extends Controller
         Auth::logout();
 
         return redirect(route('login'));
+    }
+
+    public function indexCreateMahasiswa(){
+        return view('admin.master.createMahasiswa');
     }
 }

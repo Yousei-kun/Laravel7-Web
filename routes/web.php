@@ -29,6 +29,10 @@ Route::get('login', 'LoginController@index' )->name('login');
 //Pilot Jinix
 Route::post('login', 'LoginController@authenticate')->name('login-auth');
 
-Route::get('dashboard', 'DashboardController@index' )->name('dashboard');
-Route::get('dashboard/logout', 'DashboardController@logout' )->name('dashboard-logout');
+Route::get('admin/dashboard', 'DashboardController@index' )->name('dashboard');
+Route::get('admin/logout', 'DashboardController@logout' )->name('logout');
+
+
+Route::get('admin/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
+Route::post('admin/mahasiswa/create', 'MahasiswaController@create')->name('mahasiswa-create');
 

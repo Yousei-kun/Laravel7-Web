@@ -24,7 +24,7 @@
 
 <body data-sidebar="dark">
     @yield("content")
-</body>
+
 
 <!-- JAVASCRIPT -->
 <script src="{{asset("assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
@@ -42,7 +42,20 @@
 
 <script src="{{asset("assets/admin/js/app.js")}}"></script>
 
+<!-- Responsive Table js -->
+<script src="{{asset("assets/admin/libs/admin-resources/rwd-table/rwd-table.min.js")}}"></script>
+
+<!-- Init js -->
+<script src="{{asset("assets/admin/js/pages/table-responsive.init.js")}}"></script>
+
 
 <!-- Mirrored from themesbrand.com/skote-django/layouts/dashboard-blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 15:30:57 GMT -->
+</body>
 </html>
+
+
+
+
+
+
 

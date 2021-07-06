@@ -1,4 +1,4 @@
-@extends('template')
+@extends('OLD_UNUSED_VIEWS.template')
 
 @section('title')
     Web - Login
