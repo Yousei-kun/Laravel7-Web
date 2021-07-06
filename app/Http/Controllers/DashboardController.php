@@ -24,7 +24,6 @@ class DashboardController extends Controller
         }
 
         $data = DB::table('users')->where('username', $session)->first();
-
         return view("admin.master.dashboard", compact("data"));
     }
 
