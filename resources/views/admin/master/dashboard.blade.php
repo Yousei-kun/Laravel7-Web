@@ -1,7 +1,7 @@
 @extends('admin.template.headertemplate')
 
 @section('title')
-    Web - Dashboard Admin
+    Web - Dashboard Admin2
 @endsection
 
 @section('content')
