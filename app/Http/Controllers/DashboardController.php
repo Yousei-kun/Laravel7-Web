@@ -24,7 +24,7 @@ class DashboardController extends Controller
             return redirect(route('login'));
         }
 
-        $data['username'] = DB::table('users')->where('username', $session)->first()->username;
+        $data = DB::table('users')->where('username', $session)->first();
         return view("admin.master.dashboard", compact("data"));
     }
 
