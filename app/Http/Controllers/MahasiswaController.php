@@ -10,14 +10,14 @@ class MahasiswaController extends Controller
 
     public function index(Request $request)
     {
-        $data['username'] = $request->session()->get("username");
+        $dataakun = $request->session()->get("username");
 
-        if ($data['username'] == null){
+        if ($dataakun == null){
             return redirect(route('login'));
         }
 
-        $data['mahasiswa'] = DB::table('mahasiswas')->get();
-        return view("admin.mahasiswa.index", compact("data"));
+        $data = DB::table('mahasiswas')->get();
+        return view("admin.mahasiswa.index", compact("data", "dataakun"));
     }
 
     public function create(Request $request)

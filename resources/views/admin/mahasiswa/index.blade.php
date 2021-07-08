@@ -382,7 +382,7 @@
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
                                  alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{$data['username']}}</span>
+                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{$dataakun}}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -848,41 +848,47 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                        <div class="table mb-0" data-pattern="priority-columns">
-                                            <table id="tech-companies-1" class="table table-striped">
-                                                <thead>
+
+                                    <h4 class="card-title">Table Edits</h4>
+                                    <p class="card-title-desc">Table Edits is a lightweight jQuery plugin for making table rows editable.</p>
+
+                                    <div class="table mb-0" data-pattern="priority-columns">
+                                        <table id="tech-companies-1" class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NIM</th>
+                                                <th>Nama</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            @php($i=1)
+                                            @foreach($data as $mhs)
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>NIM</th>
-                                                    <th>Nama</th>
+                                                    <td>{{$i++}}</td>
+                                                    <td>{{$mhs->nim}}</td>
+                                                    <td>{{$mhs->name}}</td>
+                                                    <td style="width: 100px">
+                                                        <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <a class="btn btn-outline-danger btn-sm edit" title="Delete">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
-                                                </thead>
-                                                <tbody>
+                                            @endforeach
 
-                                                @php($i=1)
-                                                @foreach($data['mahasiswa'] as $mhs)
-                                                    <tr>
-                                                        <td>{{$i++}}</td>
-                                                        <td>{{$mhs->nim}}</td>
-                                                        <td>{{$mhs->name}}</td>
-                                                        {{--here}}
-{{--                                                        <td>--}}
-{{--                                                            <a href="{{route('mahasiswa-delete')}}"></a>--}}
-{{--                                                        </td>--}}
-                                                    </tr>
-                                                @endforeach
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-
+                                            </tbody>
+                                        </table>
                                     </div>
 
                                 </div>
                             </div>
                         </div> <!-- end col -->
                     </div> <!-- end row -->
-
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
