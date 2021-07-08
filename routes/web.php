@@ -35,4 +35,7 @@ Route::get('admin/logout', 'DashboardController@logout' )->name('logout');
 
 Route::get('admin/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
 Route::post('admin/mahasiswa/create', 'MahasiswaController@create')->name('mahasiswa-create');
+Route::post('admin/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('mahasiswa-edit');
+Route::post('admin/mahasiswa/delete/{id}', 'MahasiswaController@destroy')->name('mahasiswa-delete');
+
 

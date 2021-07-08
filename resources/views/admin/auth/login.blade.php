@@ -1,4 +1,4 @@
-@extends('admin.template.headertemplate')
+@extends('admin.template.auth_template')
 
 @section('title')
     Web - Login
@@ -6,7 +6,6 @@
 
 @section('content')
 
-<body>
 <div class="account-pages my-5 pt-sm-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -113,19 +112,5 @@
     </div>
 </div>
 <!-- end account-pages -->
-
-<!-- JAVASCRIPT -->
-<script src="{{asset("assets/admin/libs/jquery/jquery.min.js")}}"></script>
-<script src="{{asset("assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-<script src="{{asset("assets/admin/libs/metismenu/metisMenu.min.js")}}"></script>
-<script src="{{asset("assets/admin/libs/simplebar/simplebar.min.js")}}"></script>
-<script src="{{asset("assets/admin/libs/node-waves/waves.min.js")}}"></script>
-
-<!-- App js -->
-<script src="{{asset("assets/admin/js/app.js")}}"></script>
-</body>
-
-<!-- Mirrored from themesbrand.com/skote-django/layouts/auth-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 15:31:22 GMT -->
-</html>
 
 @endsection

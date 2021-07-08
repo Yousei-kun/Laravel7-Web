@@ -10,14 +10,14 @@ class MahasiswaController extends Controller
 
     public function index(Request $request)
     {
-        $dataakun = $request->session()->get("username");
+        $data_akun = $request->session()->get("username");
 
-        if ($dataakun == null){
+        if ($data_akun == null){
             return redirect(route('login'));
         }
 
         $data = DB::table('mahasiswas')->get();
-        return view("admin.mahasiswa.index", compact("data", "dataakun"));
+        return view("admin.mahasiswa.index", compact("data", "data_akun"));
     }
 
     public function create(Request $request)
@@ -35,59 +35,21 @@ class MahasiswaController extends Controller
         return redirect(route("mahasiswa"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function edit(Request $request, $id)
     {
-        //
+        DB::table("mahasiswas")->where('id', $id)->update([
+            'nim' => $request->nim,
+            'name' => $request->name,
+        ]);
+
+        return redirect(route("mahasiswa"));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        DB::table("mahasiswas")->where('id', $id)->delete();
+
+        return redirect(route("mahasiswa"));
     }
 }

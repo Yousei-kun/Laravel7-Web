@@ -1,6 +1,7 @@
+{{--USED ONLY IN LOGIN & REGISTER PAGE--}}
+
 <!doctype html>
 <html lang="en">
-
 
 <!-- Mirrored from themesbrand.com/skote-django/layouts/auth-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 15:31:22 GMT -->
 <head>
@@ -22,38 +23,27 @@
 
 </head>
 
-<body data-sidebar="dark">
-    @yield("content")
+<body>
+@yield("content")
 
 
 <!-- JAVASCRIPT -->
-    <script src="{{asset("assets/admin/libs/jquery/jquery.min.js")}}"></script>
+<script src="{{asset("assets/admin/libs/jquery/jquery.min.js")}}"></script>
 <script src="{{asset("assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
 <script src="{{asset("assets/admin/libs/metismenu/metisMenu.min.js")}}"></script>
 <script src="{{asset("assets/admin/libs/simplebar/simplebar.min.js")}}"></script>
 <script src="{{asset("assets/admin/libs/node-waves/waves.min.js")}}"></script>
 
+<!-- validation init -->
+<script src="{{asset("assets/admin/js/pages/validation.init.js")}}"></script>
 
-<!-- apexcharts -->
-<script src="{{asset("assets/admin/libs/apexcharts/apexcharts.min.js")}}"></script>
-
-
-<!-- dashboard blog init -->
-<script src="{{asset("assets/admin/js/pages/dashboard-blog.init.js")}}"></script>
-
+<!-- App js -->
 <script src="{{asset("assets/admin/js/app.js")}}"></script>
-
-<!-- Responsive Table js -->
-<script src="{{asset("assets/admin/libs/admin-resources/rwd-table/rwd-table.min.js")}}"></script>
-
-<!-- Init js -->
-<script src="{{asset("assets/admin/js/pages/table-responsive.init.js")}}"></script>
 
 
 <!-- Mirrored from themesbrand.com/skote-django/layouts/dashboard-blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 15:30:57 GMT -->
 </body>
 </html>
-
 
 
 
