@@ -33,18 +33,24 @@
                                                 <center>
                                                     <h4 class="card-title mb-4">FORM TAMBAH MAHASISWA</h4>
                                                 </center>
-                                                <form method="post" action="{{route('mahasiswa-create')}}">
+                                                <form method="post" enctype="multipart/form-data" action="{{route('mahasiswa-create')}}">
                                                     @csrf
                                                     <div class="row mb-4">
-                                                        <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">NIM</label>
+                                                        <label for="horizontal-nim-input" class="col-sm-3 col-form-label">NIM</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="horizontal-nim-input" name="nim">
                                                         </div>
                                                     </div>
                                                     <div class="row mb-4">
-                                                        <label for="horizontal-email-input" class="col-sm-3 col-form-label">Nama</label>
+                                                        <label for="horizontal-name-input" class="col-sm-3 col-form-label">Nama</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="horizontal-name-input" name="name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-4">
+                                                        <label for="inputCV" class="col-sm-3 col-form-label">CV</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="file" class="form-control-file" id="inputCV" name="inputCV">
                                                         </div>
                                                     </div>
 
@@ -97,6 +103,7 @@
                                         <th>No</th>
                                         <th>NIM</th>
                                         <th>Nama</th>
+                                        <th>CV</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -108,6 +115,7 @@
                                             <td>{{$i++}}</td>
                                             <td>{{$mhs->nim}}</td>
                                             <td>{{$mhs->name}}</td>
+                                            <td><a href="{{url("/storage/CV/$mhs->filename")}}" download="{{"CV_" . $mhs->name}}">Download CV</a></td>
                                             <td style="width: 100px">
                                                 <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target=".modal-edit-{{$mhs->id}}">
                                                     <i class="fas fa-pencil-alt"></i>
@@ -121,7 +129,7 @@
                                                                     <center>
                                                                         <h4 class="card-title mb-4">FORM EDIT MAHASISWA</h4>
                                                                     </center>
-                                                                    <form method="post" action="{{route('mahasiswa-edit', $mhs->id)}}">
+                                                                    <form method="post" enctype="multipart/form-data" action="{{route('mahasiswa-edit', $mhs->id)}}">
                                                                         @csrf
                                                                         <div class="row mb-4">
                                                                             <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">NIM</label>
@@ -133,6 +141,12 @@
                                                                             <label for="horizontal-email-input" class="col-sm-3 col-form-label">Nama</label>
                                                                             <div class="col-sm-9">
                                                                                 <input type="text" class="form-control" id="horizontal-name-input" name="name" value="{{$mhs->name}}">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-4">
+                                                                            <label for="inputCV" class="col-sm-3 col-form-label">CV</label>
+                                                                            <div class="col-sm-9">
+                                                                                <input type="file" class="form-control-file" id="inputCV" name="inputCV">
                                                                             </div>
                                                                         </div>
 

@@ -17,6 +17,7 @@ class CreateMahasiswasTable extends Migration
             $table->id();
             $table->string('nim')->unique();
             $table->string('name');
+            $table->string('filename')->nullable();
             $table->timestamps();
         });
     }
