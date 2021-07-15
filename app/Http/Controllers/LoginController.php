@@ -60,7 +60,11 @@ class LoginController extends Controller
 
 //      disini bagian cek auth nya gan
         if (Auth::attempt($credentials)){
+
+            $role = DB::table('users')->where('username', $credentials['username'])->first()->role;
+
             $request->session()->put("username", $request->username);
+            $request->session()->put("role", $role);
             return redirect(route("dashboard"));
         }
 

@@ -20,8 +20,10 @@
                             <h4 class="mb-sm-0 mr-3 font-size-18">Tabel Mahasiswa</h4>
                             <span style="width: 20px"></span>
 
-                            <button type="button" class="mb-sm-0 btn btn-info waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".modal-create">Add New Data</button>
-{{--                                    <a href="{{route('dashboard-indexCreateMahasiswa')}}"></a>--}}
+                            @if($role=="admin")
+                                <button type="button" class="mb-sm-0 btn btn-info waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".modal-create">Add New Data</button>
+                            @endif
+
 
                             <!-- center modal -->
 
@@ -95,7 +97,6 @@
                                     <li>Gunakan tombol tempat sampah disamping data untuk menghapus mahasiswa.</li>
                                 </ul>
 
-
                             <div class="table mb-0" data-pattern="priority-columns">
                                 <table id="tech-companies-1" class="table table-striped">
                                     <thead>
@@ -104,7 +105,11 @@
                                         <th>NIM</th>
                                         <th>Nama</th>
                                         <th>CV</th>
-                                        <th>Action</th>
+
+                                        @if($role=="admin")
+                                            <th>Action</th>
+                                        @endif
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -116,103 +121,105 @@
                                             <td>{{$mhs->nim}}</td>
                                             <td>{{$mhs->name}}</td>
                                             <td><a href="{{url("/storage/CV/$mhs->filename")}}" download="{{"CV_" . $mhs->name}}">Download CV</a></td>
-                                            <td style="width: 100px">
-                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target=".modal-edit-{{$mhs->id}}">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
 
-                                                <div class="modal fade bs-example-modal-center modal-edit-{{$mhs->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <center>
-                                                                        <h4 class="card-title mb-4">FORM EDIT MAHASISWA</h4>
-                                                                    </center>
-                                                                    <form method="post" enctype="multipart/form-data" action="{{route('mahasiswa-edit', $mhs->id)}}">
-                                                                        @csrf
-                                                                        <div class="row mb-4">
-                                                                            <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">NIM</label>
-                                                                            <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="horizontal-nim-input" name="nim" value="{{$mhs->nim}}" readonly>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mb-4">
-                                                                            <label for="horizontal-email-input" class="col-sm-3 col-form-label">Nama</label>
-                                                                            <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="horizontal-name-input" name="name" value="{{$mhs->name}}">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mb-4">
-                                                                            <label for="inputCV" class="col-sm-3 col-form-label">CV</label>
-                                                                            <div class="col-sm-9">
-                                                                                <input type="file" class="form-control-file" id="inputCV" name="inputCV">
-                                                                            </div>
-                                                                        </div>
+                                            @if($role=="admin")
+                                                <td style="width: 100px">
+                                                    <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target=".modal-edit-{{$mhs->id}}">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
 
+                                                    <div class="modal fade bs-example-modal-center modal-edit-{{$mhs->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="card">
+                                                                    <div class="card-body">
                                                                         <center>
-                                                                            <div class="col-sm-9">
-                                                                                <div>
-                                                                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                                            <h4 class="card-title mb-4">FORM EDIT MAHASISWA</h4>
+                                                                        </center>
+                                                                        <form method="post" enctype="multipart/form-data" action="{{route('mahasiswa-edit', $mhs->id)}}">
+                                                                            @csrf
+                                                                            <div class="row mb-4">
+                                                                                <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">NIM</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="horizontal-nim-input" name="nim" value="{{$mhs->nim}}" readonly>
                                                                                 </div>
                                                                             </div>
-                                                                        </center>
-                                                                    </form>
-                                                                </div>
-                                                                <!-- end card body -->
-                                                            </div>
-                                                            <!-- end card -->
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->
-
-
-
-
-                                                <a class="btn btn-outline-danger btn-sm edit" title="Delete" data-bs-toggle="modal" data-bs-target=".modal-delete-{{$mhs->id}}">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </a>
-
-                                                <div class="modal fade bs-example-modal-center modal-delete-{{$mhs->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <center>
-                                                                        <h4 class="card-title mb-4">Apakah Anda yakin untuk menghapus data berikut?</h4>
-                                                                    </center>
-                                                                    <form method="post" action="{{route('mahasiswa-delete', $mhs->id)}}">
-                                                                        @csrf
-                                                                        <div class="row mb-4">
-                                                                            <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">NIM</label>
-                                                                            <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="horizontal-nim-input" name="nim" value="{{$mhs->nim}}" readonly>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mb-4">
-                                                                            <label for="horizontal-email-input" class="col-sm-3 col-form-label">Nama</label>
-                                                                            <div class="col-sm-9">
-                                                                                <input type="text" class="form-control" id="horizontal-name-input" name="name" value="{{$mhs->name}}" readonly>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <center>
-                                                                            <div class="col-sm-9">
-                                                                                <div>
-                                                                                    <button type="submit" class="btn btn-danger w-md">Delete</button>
+                                                                            <div class="row mb-4">
+                                                                                <label for="horizontal-email-input" class="col-sm-3 col-form-label">Nama</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="horizontal-name-input" name="name" value="{{$mhs->name}}">
                                                                                 </div>
                                                                             </div>
-                                                                        </center>
-                                                                    </form>
-                                                                </div>
-                                                                <!-- end card body -->
-                                                            </div>
-                                                            <!-- end card -->
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->
+                                                                            <div class="row mb-4">
+                                                                                <label for="inputCV" class="col-sm-3 col-form-label">CV</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="file" class="form-control-file" id="inputCV" name="inputCV">
+                                                                                </div>
+                                                                            </div>
 
-                                            </td>
+                                                                            <center>
+                                                                                <div class="col-sm-9">
+                                                                                    <div>
+                                                                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </center>
+                                                                        </form>
+                                                                    </div>
+                                                                    <!-- end card body -->
+                                                                </div>
+                                                                <!-- end card -->
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
+
+
+
+
+                                                    <a class="btn btn-outline-danger btn-sm edit" title="Delete" data-bs-toggle="modal" data-bs-target=".modal-delete-{{$mhs->id}}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+
+                                                    <div class="modal fade bs-example-modal-center modal-delete-{{$mhs->id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <center>
+                                                                            <h4 class="card-title mb-4">Apakah Anda yakin untuk menghapus data berikut?</h4>
+                                                                        </center>
+                                                                        <form method="post" action="{{route('mahasiswa-delete', $mhs->id)}}">
+                                                                            @csrf
+                                                                            <div class="row mb-4">
+                                                                                <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">NIM</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="horizontal-nim-input" name="nim" value="{{$mhs->nim}}" readonly>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row mb-4">
+                                                                                <label for="horizontal-email-input" class="col-sm-3 col-form-label">Nama</label>
+                                                                                <div class="col-sm-9">
+                                                                                    <input type="text" class="form-control" id="horizontal-name-input" name="name" value="{{$mhs->name}}" readonly>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <center>
+                                                                                <div class="col-sm-9">
+                                                                                    <div>
+                                                                                        <button type="submit" class="btn btn-danger w-md">Delete</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </center>
+                                                                        </form>
+                                                                    </div>
+                                                                    <!-- end card body -->
+                                                                </div>
+                                                                <!-- end card -->
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
 

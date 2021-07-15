@@ -18,14 +18,13 @@ class DashboardController extends Controller
 //  get Session dari login
     public function index(Request $request){
 
-        $session = $request->session()->get("username");
+        $username_akun = $request->session()->get("username");
 
-        if ($session == null){
+        if ($username_akun == null){
             return redirect(route('login'));
         }
 
-        $data_akun = DB::table('users')->where('username', $session)->first()->username;
-        return view("admin.master.dashboard", compact("data_akun"));
+        return view("admin.master.dashboard", compact("username_akun"));
     }
 
     public function logout(Request $request){

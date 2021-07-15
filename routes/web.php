@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //})->name('welcome');
 //PilotJinix
+
 Route::get('/', 'LoginController@welcome')->name('welcome');
 
 Route::get('register', 'RegisterController@index' )->name('register');
@@ -29,13 +30,21 @@ Route::get('login', 'LoginController@index' )->name('login');
 //Pilot Jinix
 Route::post('login', 'LoginController@authenticate')->name('login-auth');
 
-Route::get('admin/dashboard', 'DashboardController@index' )->name('dashboard');
-Route::get('admin/logout', 'DashboardController@logout' )->name('logout');
+
+Route::group(['middleware' => ['rolecheck:admin,teacher']], function () {
+    Route::get('admin/dashboard', 'DashboardController@index' )->name('dashboard');
+    Route::get('admin/logout', 'DashboardController@logout' )->name('logout');
+    Route::get('admin/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
+});
+
+Route::group(['middleware' => ['rolecheck:admin']], function () {
+    Route::post('admin/mahasiswa/create', 'MahasiswaController@create')->name('mahasiswa-create');
+    Route::post('admin/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('mahasiswa-edit');
+    Route::post('admin/mahasiswa/delete/{id}', 'MahasiswaController@destroy')->name('mahasiswa-delete');
+});
 
 
-Route::get('admin/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
-Route::post('admin/mahasiswa/create', 'MahasiswaController@create')->name('mahasiswa-create');
-Route::post('admin/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('mahasiswa-edit');
-Route::post('admin/mahasiswa/delete/{id}', 'MahasiswaController@destroy')->name('mahasiswa-delete');
+
+
 
 

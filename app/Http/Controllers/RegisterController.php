@@ -43,6 +43,7 @@ class RegisterController extends Controller
 
         DB::table("users")->insert([
             'username' => $request->username,
+            'role' => "teacher",
             'password' => Hash::make($request->password),
         ]);
 

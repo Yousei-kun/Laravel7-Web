@@ -11,21 +11,22 @@ class MahasiswaController extends Controller
 
     public function index(Request $request)
     {
-        $data_akun = $request->session()->get("username");
+        $username_akun = $request->session()->get("username");
+        $role = $request->session()->get("role");
 
-        if ($data_akun == null){
+        if ($username_akun == null){
             return redirect(route('login'));
         }
 
         $data = DB::table('mahasiswas')->get();
-        return view("admin.mahasiswa.index", compact("data", "data_akun"));
+        return view("admin.mahasiswa.index", compact("data", "username_akun", "role"));
     }
 
     public function create(Request $request)
     {
-        $data_akun = $request->session()->get("username");
+        $username_akun = $request->session()->get("username");
 
-        if ($data_akun == null){
+        if ($username_akun == null){
             return redirect(route('login'));
         }
 
@@ -48,9 +49,9 @@ class MahasiswaController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $data_akun = $request->session()->get("username");
+        $username_akun = $request->session()->get("username");
 
-        if ($data_akun == null){
+        if ($username_akun == null){
             return redirect(route('login'));
         }
 
@@ -86,9 +87,9 @@ class MahasiswaController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $data_akun = $request->session()->get("username");
+        $username_akun = $request->session()->get("username");
 
-        if ($data_akun == null){
+        if ($username_akun == null){
             return redirect(route('login'));
         }
 
